@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.lau.repast.mapper.CouponMapper" >
+  <resultMap id="BaseResultMap" type="com.aaa.lau.repast.model.Coupon" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="INTEGER" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="per_limit" property="perLimit" jdbcType="INTEGER" />
+    <result column="min_point" property="minPoint" jdbcType="DECIMAL" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="use_type" property="useType" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="publish_count" property="publishCount" jdbcType="INTEGER" />
+    <result column="use_count" property="useCount" jdbcType="INTEGER" />
+    <result column="receive_count" property="receiveCount" jdbcType="INTEGER" />
+    <result column="enable_time" property="enableTime" jdbcType="TIMESTAMP" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="member_level" property="memberLevel" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="selectAllByDateP" parameterType="Date" resultMap="BaseResultMap">
+    SELECT * from sms_coupon WHERE enable_time > SELECT * from sms_coupon
+    WHERE end_time > #{nowTime,jdbcType=DATE} and type = 0;
+  </select>
+
+  <select id="selectAllByDate" parameterType="Date" resultMap="BaseResultMap">
+    SELECT * from sms_coupon WHERE enable_time > SELECT * from sms_coupon
+    WHERE end_time > #{nowTime,jdbcType=DATE} ;
+  </select>
+
+  <select id="selectById" parameterType="Long" resultMap="BaseResultMap">
+    select * from sme_coupon where id = #{Id,jdbcType=BIGINT} and end_time > #{nowTime,jdbcType=DATE}
+  </select>
+
+  <select id="selectByProduct" parameterType="Long" resultMap="BaseResultMap">
+    SELECT * from sms_coupon
+    WHERE shop_id= (SELECT shop_id FROM pms_product WHERE id = #{shopId,jdbcType=BIGINT})
+  </select>
+
+  <select id="selectByProductP" parameterType="Long" resultMap="BaseResultMap">
+    SELECT * from sms_coupon
+    WHERE shop_id= (SELECT shop_id FROM pms_product WHERE id = #{shopId,jdbcType=BIGINT}) and type = 0
+  </select>
+
+  <select id="selectBeforeUpdate" parameterType="Date" resultMap="BaseResultMap">
+    SELECT * from sms_coupon WHERE enable_time > SELECT * from sms_coupon
+    WHERE end_time > #{nowTime,jdbcType=DATE}
+  </select>
+  <update id="updateByTime" parameterType="Long">
+    update sms_coupon SET type = 5 WHERE id = #{Id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByMember" parameterType="Long" resultMap="BaseResultMap">
+    SELECT a.id,a.shop_id,a.type,a.`name`,a.amount,a.per_limit,
+    a.start_time,a.end_time,a.use_type,a.note,a.platform,a.enable_time,b.use_status
+    FROM sms_coupon a
+    INNER JOIN sms_coupon_history b ON b.coupon_id = a.id
+    INNER JOIN ums_member c ON b.member_id = c.id WHERE c.id = #{Id,jdbcType=BIGINT} and b.use_status = 0
+  </select>
+
+  <update id="updateCount" parameterType="Coupon">
+    update sms_coupon SET `count` = #{count,jdbcType=INTEGER} WHERE id = #{Id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>repast-app-management</artifactId>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>repast-app-management-mapper</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>repast-app-management-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!--
+            分页插件
+        -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis</groupId>-->
+<!--            <artifactId>mybatis</artifactId>-->
+<!--            <version>3.5.3</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>tk.mybatis</groupId>-->
+<!--            <artifactId>mapper</artifactId>-->
+<!--            <version>4.0.3</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis.generator</groupId>-->
+<!--            <artifactId>mybatis-generator-core</artifactId>-->
+<!--            <version>1.3.6</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.ibatis</groupId>-->
+<!--            <artifactId>ibatis-core</artifactId>-->
+<!--            <version>3.0</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+<!--    <build>-->
+
+<!--    <plugins>-->
+<!--        &lt;!&ndash; 逆向工程插件,如果不配置插件，逆向工程无法运行 &ndash;&gt;-->
+<!--        <plugin>-->
+<!--            <groupId>org.mybatis.generator</groupId>-->
+<!--            <artifactId>mybatis-generator-maven-plugin</artifactId>-->
+<!--            <version>1.3.2</version>-->
+<!--            <configuration>-->
+<!--                &lt;!&ndash; 引入自己写得配置文件 &ndash;&gt;-->
+<!--                <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>-->
+<!--                <overwrite>true</overwrite>-->
+<!--                <verbose>true</verbose>-->
+<!--            </configuration>-->
+<!--            <dependencies>-->
+<!--                <dependency>-->
+<!--                    <groupId>mysql</groupId>-->
+<!--                    <artifactId>mysql-connector-java</artifactId>-->
+<!--                    <version>8.0.18</version>-->
+<!--                </dependency>-->
+<!--                <dependency>-->
+<!--                    <groupId>tk.mybatis</groupId>-->
+<!--                    <artifactId>mapper</artifactId>-->
+<!--                    <version>4.0.3</version>-->
+<!--                </dependency>-->
+<!--            </dependencies>-->
+<!--        </plugin>-->
+<!--        <plugin>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-compiler-plugin</artifactId>-->
+<!--            <configuration>-->
+<!--                <source>6</source>-->
+<!--                <target>6</target>-->
+<!--            </configuration>-->
+<!--        </plugin>-->
+<!--    </plugins>-->
+<!--    </build>-->
+
+</project>
